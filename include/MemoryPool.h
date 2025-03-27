@@ -45,10 +45,10 @@ public:
     ~MemoryPool();
 
     // 定义分配函数
-    pointer allocate(size_t n = 1, const pointer hint = 0);
+    T* allocate(size_t n = 1, const T* hint = 0);
 
     // 定义释放函数
-    void deallocate(pointer p, size_t n = 1);
+    void deallocate(T* p, size_t n = 1);
 
     // 定义获取最大分配数量函数
     size_t max_size() const;

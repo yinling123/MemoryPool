@@ -2,8 +2,6 @@
 #define MEMORYPOOL_CPP
 
 #include "../../include/MemoryPool.h"
-#include <utility>
-
 
 /**
  * 初始化所有变量为nullptr
@@ -79,7 +77,7 @@ MemoryPool<T, BlockSize>::~MemoryPool()
 }
 
 template <typename T, size_t BlockSize>
-typename MemoryPool<T, BlockSize>::pointer MemoryPool<T, BlockSize>::allocate(size_t n, const pointer hint)
+T* MemoryPool<T, BlockSize>::allocate(size_t n, const T* hint)
 {
     //如果有空闲插槽，从空闲插槽中分配空间
     if(freeSlot != nullptr){
@@ -102,7 +100,7 @@ typename MemoryPool<T, BlockSize>::pointer MemoryPool<T, BlockSize>::allocate(si
  * 释放对应的空间，并且指向下一个空闲块
  */
 template <typename T, size_t BlockSize>
-void MemoryPool<T, BlockSize>::deallocate(pointer p, size_t n)
+void MemoryPool<T, BlockSize>::deallocate(T* p, size_t n)
 {
     // 将释放的内存区域插入空闲链表头部
     if(p != nullptr){
